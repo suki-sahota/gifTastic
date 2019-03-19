@@ -1,3 +1,7 @@
+/*
+ * Author: Suki Sahota
+ * Description: GifTastic
+ */
 // Initial array of animals
 let animals = ["sloth", "skunk", "red panda", "koala", "banana slug"];
 let index = -1;
@@ -40,13 +44,14 @@ function renderButton() {
                     let stillUrl = response.data[i].images.fixed_height_still.url;
                     let rating = response.data[i].rating;
         
-                    // Creating a new image tag with class ".gif"
+                    // Creating a new image tag with class ".gif" and add attributes
                     let newGif = $("<img class='gif'>");
-        
-                    newGif.attr("src", stillUrl);
-                    newGif.attr("data-animate", animateUrl);
-                    newGif.attr("data-still", stillUrl);
-                    newGif.attr('data-state', "still");
+                    newGif.attr({
+                        "src": stillUrl,
+                        "data-animate": animateUrl,
+                        "data-still": stillUrl,
+                        "data-state": "still"
+                    });
                     
                     // Prepending the images tag and the rating to the animalDiv with class ".animal"
                     $(".animal:first").prepend(newGif);
@@ -63,7 +68,7 @@ function renderButton() {
 }
 
 
-// MAIN APPLICATION
+// MAIN PROCESS
 // =====================================
 for (let i = 0; i < animals.length; i++) {
     renderButton();
